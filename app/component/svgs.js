@@ -15,7 +15,7 @@ class Svgs {
         let markers = [];
         let pointNum = this.pointNum && this.pointNum < data.length ? this.pointNum : data.length;
         let cities = [];
-        console.log("pointNum:",pointNum);
+        // console.log("pointNum:",pointNum);
         for (let i = 0; i < pointNum; i += 3) {
             let obj = {};
             obj.latLng = [+data[i], +data[i+1]];
@@ -24,7 +24,7 @@ class Svgs {
             cities.push(obj);
         }
 
-        console.log("cities:",cities);
+        // console.log("cities:",cities);
         let citiesOverlay = L.d3SvgOverlay(function(sel, proj) {
 
             let minLogPop = Math.log2(d3.min(cities, function(d) {

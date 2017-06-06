@@ -3,8 +3,9 @@
  * full canvas layer implementation for Leaflet
  */
 import L from 'leaflet';
+import tileLoader from './leaflet_tileLoader_mixin.js';
 
-L.CanvasLayer = L.Class.extend({
+L.CanvasLayer = L.Layer.extend({    //modify
 
     includes: [L.Mixin.Events, L.Mixin.TileLoader],
 
@@ -56,7 +57,6 @@ L.CanvasLayer = L.Class.extend({
 
     onAdd: function(map) {
         this._map = map;
-
         // add container with the canvas to the tile pane
         // the container is moved in the oposite direction of the 
         // map pane to keep the canvas always in (0, 0)
@@ -121,7 +121,7 @@ L.CanvasLayer = L.Class.extend({
 
         var bg = back;
         var transform = L.DomUtil.TRANSFORM;
-        bg.style[transform] = L.DomUtil.getTranslateString(origin) + ' scale(' + e.scale + ') ';
+        // bg.style[transform] = L.DomUtil.getTranslateString(origin) + ' scale(' + e.scale + ') ';
     },
 
     _endZoomAnim: function() {
@@ -155,6 +155,7 @@ L.CanvasLayer = L.Class.extend({
 
     addTo: function(map) {
         map.addLayer(this);
+
         return this;
     },
 

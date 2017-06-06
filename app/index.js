@@ -1,14 +1,16 @@
 import {map} from './component/basemap.js';
 import Icons from './component/icons.js';
 import Svgs from './component/svgs.js';
-import Stats from 'stats.js';
+import Canvas from './component/canvas.js';
+import WebGL from './component/webgl.js';
+import Stats from 'stats.js';  
 
 let pointNum = 0;//渲染多少点 0表示全部渲染
 
-window.addEventListener("load",hashManger);
-window.addEventListener("hashchange",hashManger);
+window.addEventListener("load",hashManager);
+window.addEventListener("hashchange",hashManager);
 
-function hashManger(){
+function hashManager(){
 	console.log(window.location.hash.slice(1));
 	switch(window.location.hash.slice(1)) {
 		case "imgs":
@@ -20,7 +22,12 @@ function hashManger(){
 			svgs.init(pointNum);
 			break;		
 		case "canvas":
-			
+			let canvas = new Canvas();
+			canvas.init(pointNum);
+			break;
+		case "webgl":
+			let webgl = new WebGL();
+			webgl.init(pointNum);
 			break;
 	}
 }
@@ -28,6 +35,8 @@ let location = window.location;
 let showIcons =  document.getElementById('showIcons');
 let unshow =  document.getElementById('unshow');
 let showSvgs =  document.getElementById('showSvgs');
+let showCavans =  document.getElementById('showCavans');
+let showWebGL =  document.getElementById('showWebGL');
 
 unshow.addEventListener('click',()=>{
 	location.assign(location.origin);
@@ -39,6 +48,14 @@ showIcons.addEventListener('click',()=>{
 });
 showSvgs.addEventListener('click',()=>{
 	location.assign(location.origin+"/#svgs");
+	location.reload();
+});
+showCavans.addEventListener('click',()=>{
+	location.assign(location.origin+"/#canvas");
+	location.reload();
+});
+showWebGL.addEventListener('click',()=>{
+	location.assign(location.origin+"/#webgl");
 	location.reload();
 });
 

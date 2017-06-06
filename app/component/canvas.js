@@ -1,5 +1,6 @@
 import L from 'leaflet';
 import { map } from './basemap.js';
+// import tileLoader from '../common/libs/leaflet_tileLoader_mixin.js';
 import canvasLayer from '../common/libs/leaflet_canvas_layer.js';
 
 import pop2010 from '../data/pop2010.json';
@@ -26,14 +27,24 @@ class Canvas {
                 var ctx = canvas.getContext('2d');
                 // clear canvas
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                // get center from the map (projected)
-                var point = this._map.latLngToContainerPoint(new L.LatLng(0, 0));
-                // render
-                this.renderCircle(ctx, point, (1.0 + Math.sin(Date.now() * 0.001)) * 300);
+                /********************************************************************/
+                // console.log("绘制");222
+                let data = pop2010[0][1];
+                let pointNum = this.pointNum && this.pointNum < data.length ? this.pointNum : data.length;
+                for (let i = 0; i < pointNum; i += 3) {
+                    // get center from the map (projected)
+                    var point = this._map.latLngToContainerPoint(new L.LatLng(+data[i], +data[i+1]));
+                    // render
+                    // this.renderCircle(ctx, point, (1.0 + Math.sin(Date.now() * 0.001)) * 300);//是动态的
+                    this.renderCircle(ctx, point, 1);
+                }
+                /********************************************************************/
                 this.redraw();
             }
         });
-        var layer = new BigPointLayer();
+        var layer = new BigPointLayer({
+            zIndex: 999 //高于map底图
+        });
         layer.addTo(map);
     }
 }
