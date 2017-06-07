@@ -35,7 +35,7 @@ class Icons {
         let pointNum = this.pointNum && this.pointNum < data.length? this.pointNum : data.length;
 
         let myIcon = L.icon({
-            iconUrl: '/app/common/imgs/p-blue-32.png',
+            iconUrl: '/app/common/imgs/p-red-32.png',
             iconSize: [10, 10],
             // iconAnchor: [22, 94]
         });

@@ -14,8 +14,8 @@ class Canvas {
     pop2010() {
         var BigPointLayer = L.CanvasLayer.extend({
             renderCircle: function(ctx, point, radius) {
-                ctx.fillStyle = 'rgba(255, 60, 60, 0.2)';
-                ctx.strokeStyle = 'rgba(255, 60, 60, 0.9)';
+                ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+                ctx.strokeStyle = 'rgba(255, 0, 0, 1)';
                 ctx.beginPath();
                 ctx.arc(point.x, point.y, radius, 0, Math.PI * 2.0, true, true);
                 ctx.closePath();

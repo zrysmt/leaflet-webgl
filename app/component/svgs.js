@@ -43,7 +43,7 @@ class Svgs {
                 .attr('cy', function(d) {
                     return proj.latLngToLayerPoint(d.latLng).y;
                 })
-                .attr('stroke', '#44a3e5')
+                .attr('stroke', '#ff0000')
                 .attr('stroke-width', 1)
                 .attr('fill','#44a3e5');
                 /*.attr('fill', function(d) {
